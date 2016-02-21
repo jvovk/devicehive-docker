@@ -1,11 +1,11 @@
-dh: 
+dh:
   build: .
   links:
     - "postgres"
     - "kafka"
     - "zookeeper"
   ports:
-    - "80:80"
+    - "8080:8080"
   environment:
     DH_POSTGRES_USERNAME: "postgres"
     DH_POSTGRES_PASSWORD: "mysecretpassword"
@@ -21,12 +21,10 @@ kafka:
   image: ches/kafka:0.8.2.1
   links:
     - "zookeeper"
-  environment:
-    ZOOKEEPER_IP: "192.168.149.131"
-  ports:
-    - "9092:9092"
+  expose:
+    - "9092"
 
-postgres: 
+postgres:
   image: postgres:9.4.4
   ports:
     - "5432:5432"
