@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+nginx &
+
 set -x
 
 # If a ZooKeeper container is linked with the alias `zookeeper`, use it.
@@ -31,7 +33,7 @@ java -server -Xmx512m -XX:MaxRAMFraction=1 -XX:+UseConcMarkSweepGC -XX:+CMSParal
 -Dthreads.count=${DH_KAFKA_THREADS_COUNT:-3} \
 -Dhazelcast.port=${DH_HAZELCAST_PORT:-5701} \
 -Dserver.context-path=/api \
--Dserver.port=80 \
+-Dserver.port=8080 \
 ./devicehive-${DH_VERSION}-boot.jar
 
 set +x
